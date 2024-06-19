@@ -28,10 +28,17 @@ body {
     padding: 30px 50px;
 }
 
+.centerText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .mainContainer{
     background-color: var(--bg-secondary);
     height: 80vh;
     margin-bottom: 100px;
+    padding: 25px;
 }
 
 h1 {
@@ -39,12 +46,14 @@ h1 {
     font-family: "Kumbh Sans", sans-serif;
     font-size: 75px;
     margin-bottom: 1px;
+    animation: fade 1s ease-in;
 }
 
 h3 {
     color: var(--color-secondary);
     font-family: "Sulphur Point", sans-serif;
     font-size: 27px;
+    animation: fade 1.75s ease-in;
 }
 
 .input-group {
@@ -72,3 +81,24 @@ h3 {
     letter-spacing: 3px;
 }
 
+.messageItem {
+    background-color: #68477d;
+    color: var(--color-secondary);
+    padding: 15px;
+    border-radius: 4px;
+    text-align: left;
+    animation: fade 0.75s ease-in;
+    word-break: break-all;
+    margin: 25px 0;
+    width: 50%;
+}
+
+@keyframes fade {
+    0% { 
+        opacity: 0; 
+    }
+
+    100% { 
+        opacity: 1; 
+    }
+}

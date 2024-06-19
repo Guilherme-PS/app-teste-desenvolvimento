@@ -13,11 +13,17 @@ textarea.addEventListener("keyup", e => {
         targetHeight = maxHeight;
 
         textarea.style.overflowY = "scroll";
-    } 
-    
+    }
+
     else {
         textarea.style.overflowY = "hidden";
     }
 
     textarea.style.height = `${targetHeight}px`;
+});
+
+textarea.addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+    }
 });
