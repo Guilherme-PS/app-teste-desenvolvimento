@@ -1,0 +1,14 @@
+# local env files
+.env
+
+# dirs
+venv/
+.env/
+
+# other files
+*~
+
+# log / cache
+*.log
+*.sqlite3
+__pycache__/
