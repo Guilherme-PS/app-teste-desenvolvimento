@@ -39,6 +39,7 @@ body {
     height: 80vh;
     margin-bottom: 100px;
     padding: 25px;
+    overflow: auto;
 }
 
 h1 {
@@ -82,7 +83,7 @@ h3 {
 }
 
 .messageItem {
-    background-color: #68477d;
+    background-color: #004d97;
     color: var(--color-secondary);
     padding: 15px;
     border-radius: 4px;
@@ -91,6 +92,7 @@ h3 {
     word-break: break-all;
     margin: 25px 0;
     width: 50%;
+    white-space: pre-wrap;
 }
 
 @keyframes fade {

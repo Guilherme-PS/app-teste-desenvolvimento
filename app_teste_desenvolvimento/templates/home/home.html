@@ -16,7 +16,7 @@
     <div class="container w-75">
         <div class="row">
             <div class="col-12">
-                <div class="centerText mainContainer" id="inputContainer">
+                <div class="centerText mainContainer" id="interface">
                     <div class="rounded-4">
                         <div class="text-center" id="initialText">
                             <h1>Olá!</h1>
@@ -29,17 +29,19 @@
 
             <div class="col-12 position-relative d-flex justify-content-center">
                 <div class="position-absolute bottom-0 w-100 px-1 mb-4">
-                    <div class="input-group rounded-4">
-                        <span class="input-group-text rounded-start-4">➤</span>
-                        <textarea class="form-control rounded-0" aria-label="With textarea" rows="1" placeholder="Faça uma Pergunta" id="questionInput"></textarea>
-                    </div>
+                    <form method="post" id="form">{% csrf_token %}
+                        <div class="input-group rounded-4">
+                            <span class="input-group-text rounded-start-4">➤</span>
+                            <textarea class="form-control rounded-0" aria-label="With textarea" rows="1" placeholder="Faça uma Pergunta" id="userInput"></textarea>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    
+    <script src="{% static 'js/home/SendMessage.js' %}"></script>
     <script src="{% static 'js/home/AutoResize.js' %}"></script>
-    <script src="{% static 'js/home/UserMessage.js' %}"></script>
 </html>
