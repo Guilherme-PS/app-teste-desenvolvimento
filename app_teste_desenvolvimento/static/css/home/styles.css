@@ -70,6 +70,11 @@ h3 {
     resize: None;
 }
 
+.form-control:disabled{
+    background-color: var(--bg-secondary);
+    transition: all 0.5s ease-in-out;
+}
+
 .form-control {
     padding: 15px;
     font-size: 20px;
@@ -83,16 +88,46 @@ h3 {
 }
 
 .messageItem {
-    background-color: #004d97;
     color: var(--color-secondary);
     padding: 15px;
+    animation: fade 0.75s ease-in;
     border-radius: 4px;
     text-align: left;
-    animation: fade 0.75s ease-in;
-    word-break: break-all;
     margin: 25px 0;
-    width: 50%;
+    width: 47%;
     white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.userInput {
+    background-color: #004d97;
+}
+
+.answer {
+    background-color: var(--bg-tertiary);
+}
+
+.loading {
+    padding: 15px;
+    display: none;
+}
+
+.loading span {
+    width: 13px;
+    height: 13px;
+    margin: 0 3px;
+    background-color: #004d97;
+    border-radius: 50%;
+    display: inline-block;
+    animation: dots 2s infinite ease-in-out; 
+}
+
+.loading span:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.loading span:nth-child(3) {
+    animation-delay: 0.8s;
 }
 
 @keyframes fade {
@@ -102,5 +137,12 @@ h3 {
 
     100% { 
         opacity: 1; 
+    }
+}
+
+@keyframes dots {
+    50% {
+        opacity: 0;
+        transform: scale(0.7) translateY(10px);
     }
 }

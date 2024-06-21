@@ -1,3 +1,4 @@
+// Cookie
 function getCookie(name) {
     let cookieValue = null;
 
@@ -18,10 +19,18 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Função principal
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form");
     const userInput = document.getElementById("userInput");
+    const initialText = document.getElementById("initialText");
+    const interfaceInput = document.getElementById("interface");
+    const dots = document.getElementById("dots");
 
+    // Foca o input
+    userInput.focus();
+
+    // Submit ao pressionar Enter
     userInput.addEventListener("keyup", (e) => {
         if(e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
@@ -30,31 +39,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    // Submit
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         
         const message = userInput.value.trim();
-    
+        
         if(message) {
-            const initialText = document.getElementById("initialText");
-            const interfaceInput = document.getElementById("interface");
-    
+            // Desabilita o input
+            userInput.disabled = true;   
+
+            // Exibe a mensagem do usuário na tela
             const messageElement = document.createElement("div");
-    
+            
             initialText.style.display = "none";
             interfaceInput.classList.remove("centerText");
             textarea.style.height = "auto";
     
-            messageElement.classList.add("messageItem", "ms-auto", "me-0");
+            messageElement.classList.add("userInput", "messageItem", "ms-auto", "me-0");
             messageElement.textContent = message;
     
             interfaceInput.appendChild(messageElement);
-            interfaceInput.scrollTop = interfaceInput.scrollHeight;
             
+            // Limpa o input
             userInput.value = "";
             
             const csrftoken = getCookie("csrftoken");
 
+            // loading
+            interfaceInput.appendChild(dots);
+            dots.style.display = "inline-block";
+            
+            // Ajax
             const request = new Request(
                 "/get_message/",
                 {
@@ -67,20 +83,40 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: JSON.stringify({ "message": message })
                 }
             ); 
-        
+            
             fetch(request)
                 .then((response) => {
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data);
+                    // Oculta o loading
+                    dots.style.display = "none";
+
+                    // Exibe a resposta na tela
+                    const answerElement = document.createElement("div");
+
+                    answerElement.classList.add("answer", "messageItem", "me-auto", "ms-0");
+                    
+                    answerElement.textContent = data.answer;
+
+                    interfaceInput.appendChild(answerElement);
+                    
                 })
                 .catch((error) => {
                     console.log(error);
                 })
-        }
-    
-        userInput.focus();
+                .finally(() => {
+                    // Habilita o input
+                    userInput.disabled = false;  
+
+                    // Desce a scrollbar
+                    interfaceInput.scrollTop = interfaceInput.scrollHeight;
+
+                    // Foca o input
+                    userInput.focus();
+                })
+
+        }  
     });
     
 });
